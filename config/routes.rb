@@ -1,3 +1,12 @@
+
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :restaurants do
+    resources :pizzas, only: [:index, :create]
+  end
+
+  resources :pizzas do
+    resources :restaurants, only: [:index, :create]
+  end
+
+  resources :restaurant_pizzas, only: [:create]
 end
